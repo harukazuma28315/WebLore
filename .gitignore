@@ -1,0 +1,13 @@
+# Bỏ file kết nối CSDL
+db_connect.php
+
+# Bỏ các thư mục upload ảnh
+uploads/
+images/uploads/
+
+# Bỏ các file xuất CSDL
+*.sql
+
+# Bỏ các file hệ thống
+.DS_Store
+Thumbs.db
