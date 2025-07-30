@@ -1,13 +1,20 @@
-# Bỏ file kết nối CSDL
+# Bỏ thông tin kết nối CSDL
 db_connect.php
 
-# Bỏ các thư mục upload ảnh
-uploads/
-images/uploads/
-
-# Bỏ các file xuất CSDL
+# Ẩn thông tin mẫu CSDL nếu có
 *.sql
 
-# Bỏ các file hệ thống
+# Thư mục lưu ảnh upload
+uploads/
+images/avatars/
+images/covers/
+
+# Các file hệ thống không cần thiết
+*.log
+*.tmp
 .DS_Store
 Thumbs.db
+
+# Các file tạm của editor
+.vscode/
+.idea/
