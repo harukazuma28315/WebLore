@@ -1,10 +1,6 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "", "webnovel");
-
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+include '../db_connect.php';
 
 // ✅ Lấy và kiểm tra tham số truyền vào
 if (!isset($_GET['id']) || !isset($_GET['type'])) {

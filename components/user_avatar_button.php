@@ -1,7 +1,6 @@
 <?php
 // Kết nối database
-$conn = new mysqli("localhost", "root", "", "webnovel");
-$conn->set_charset("utf8mb4");
+include '../db_connect.php';
 ?>
 <?php if (isset($_SESSION['user_id'])): ?>
   <!-- Đã đăng nhập: hiện avatar + dropdown menu -->

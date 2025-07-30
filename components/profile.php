@@ -46,13 +46,13 @@ while ($row = $result->fetch_assoc()) {
 $stmt = $conn->prepare("
     SELECT 
         n.novel_id, 
-        n.title, 
-        n.description, 
-        n.cover, 
-        n.approval, 
-        a.name AS author_name,
-        c.name AS theloai_chinh,
-        GROUP_CONCAT(t.name SEPARATOR ', ') AS theloai_phu
+        MAX(n.title) AS title, 
+        MAX(n.description) AS description, 
+        MAX(n.cover) AS cover, 
+        MAX(n.approval) AS approval, 
+        MAX(a.name) AS author_name,
+        MAX(c.name) AS theloai_chinh,
+        GROUP_CONCAT(DISTINCT t.name SEPARATOR ', ') AS theloai_phu
     FROM novels n
     LEFT JOIN novel_author na ON n.novel_id = na.novel_id
     LEFT JOIN authors a ON na.author_id = a.author_id
@@ -61,8 +61,12 @@ $stmt = $conn->prepare("
     LEFT JOIN tags t ON nt.tag_id = t.tag_id
     WHERE n.created_by = ?
     GROUP BY n.novel_id
-    ORDER BY n.created_at DESC
+    ORDER BY MAX(n.created_at) DESC
 ");
+
+if (!$stmt) {
+    die("Lỗi prepare: " . $conn->error);
+}
 
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
